@@ -6,8 +6,6 @@ This is the official Android / Fire Phone app for OneBusAway!
 
 [![Amazon App Store logo](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/devportal2/res/images/amazon-underground-app-us-black.png)](http://www.amazon.com/gp/mas/dl/android?p=com.joulespersecond.seattlebusbot)
 
-<image src="https://user-images.githubusercontent.com/928045/29891146-14ee4f44-8d98-11e7-999b-63f5d2ece916.gif" width="240" height="427" align=left />
-
 OneBusAway for Android provides:
 
 1. Real-time arrival/departure information for public transit
@@ -20,6 +18,8 @@ OneBusAway for Android provides:
 7. Issue reporting to any Open311-compliant issue management system (see [this page](ISSUE_REPORTING) for details)
 
 OneBusAway for Android automatically keeps track of your most used stops and routes, and allows you to put shortcuts on your phone's home screen for any stop or route you choose.
+
+<image src="https://user-images.githubusercontent.com/928045/29891146-14ee4f44-8d98-11e7-999b-63f5d2ece916.gif" width="240" height="427" align=right />
 
 ## Alpha and Beta Testing
 
