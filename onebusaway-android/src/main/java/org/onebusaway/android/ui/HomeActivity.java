@@ -1296,25 +1296,52 @@ public class HomeActivity extends AppCompatActivity
     }
 
     private void checkLeftHandMode() {
-        if (mFabMyLocation == null) {
-            return;
-        }
-        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mFabMyLocation
-                .getLayoutParams();
-
         boolean leftHandMode = Application.getPrefs().getBoolean(
                 getString(R.string.preference_key_left_hand_mode), false);
+        if (mFabMyLocation != null) {
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mFabMyLocation
+                    .getLayoutParams();
+            updateLeftHandMode(mFabMyLocation, layoutParams, leftHandMode);
+        }
+        if (mLayersFab != null) {
+            // Update all the Layers FAB-contained layouts
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mLayersFab
+                    .getFabContainer()
+                    .getLayoutParams();
+            updateLeftHandMode(mLayersFab.getFabContainer(), layoutParams, leftHandMode);
+
+            layoutParams = (RelativeLayout.LayoutParams) mLayersFab
+                    .getLayoutParams();
+            updateLeftHandMode(mLayersFab, layoutParams, leftHandMode);
+            layoutParams = (RelativeLayout.LayoutParams) mLayersFab.getButton().getLayoutParams();
+            updateLeftHandMode(mLayersFab.getButton(), layoutParams, leftHandMode);
+
+            for (int i = 0; i < mLayersFab.getButton().getChildCount(); i++) {
+                View v = mLayersFab.getChildAt(i);
+                RelativeLayout.LayoutParams p = (RelativeLayout.LayoutParams) v.getLayoutParams();
+                updateLeftHandMode(v, p, leftHandMode);
+            }
+        }
+    }
+
+    private void updateLeftHandMode(View v, RelativeLayout.LayoutParams layoutParams,
+            boolean leftHandMode) {
         if (leftHandMode) {
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_START);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 layoutParams.removeRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                layoutParams.removeRule(RelativeLayout.ALIGN_PARENT_END);
             }
         } else {
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_END);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 layoutParams.removeRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                layoutParams.removeRule(RelativeLayout.ALIGN_PARENT_START);
             }
         }
+        v.setLayoutParams(layoutParams);
     }
 
     /**
